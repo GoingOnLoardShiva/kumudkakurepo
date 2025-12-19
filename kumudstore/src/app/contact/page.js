@@ -28,7 +28,7 @@ export default function ContactPage() {
           {/* LEFT: CONTACT INFO */}
           <div className="rounded-2xl bg-white p-8 shadow-sm">
             <h2 className="text-2xl font-semibold text-slate-900">
-              Kumud Designs
+              MK Frame Work
             </h2>
             <p className="mt-2 text-slate-600">
               Specialists in Chokhat & Compound Wall Works
@@ -53,7 +53,7 @@ export default function ContactPage() {
               <div className="flex items-center gap-4">
                 <MdEmail className="text-xl text-slate-900" />
                 <a
-                  href="mailto:contact@kumuddesigns.com"
+                  href="mailto:contact@mkframework@gmail.com"
                   className="hover:underline"
                 >
                   contact@kumuddesigns.com
