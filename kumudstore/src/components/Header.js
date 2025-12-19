@@ -94,29 +94,51 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile Menu (Aligned to Header) */}
-        {open && (
-          <div className="absolute left-0 right-0 mt-3 rounded-2xl bg-white shadow-lg border border-slate-200 md:hidden">
-            <div className="flex flex-col gap-4 px-6 py-4">
-              <Link href="/products" onClick={() => setOpen(false)}>
-                Products
-              </Link>
-              <Link href="/about" onClick={() => setOpen(false)}>
-                About
-              </Link>
-              <Link href="/contact" onClick={() => setOpen(false)}>
-                Contact
-              </Link>
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="rounded-full bg-slate-900 px-4 py-2 text-sm text-white text-center"
-              >
-                Get a Quote
-              </a>
-            </div>
+        {/* Mobile Menu (Animated) */}
+        <div
+          className={`absolute left-0 right-0 mt-3 rounded-2xl bg-white/80 backdrop-blur-md shadow-md border border-slate-200 md:hidden
+    transition-all duration-300 ease-out
+    ${
+      open
+        ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
+        : "opacity-0 -translate-y-3 scale-95 pointer-events-none"
+    }
+  `}
+        >
+          <div className="flex flex-col gap-4 px-6 py-4">
+            <Link
+              href="/products"
+              onClick={() => setOpen(false)}
+              className="w-fit relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Products
+            </Link>
+
+            <Link
+              href="/about"
+              onClick={() => setOpen(false)}
+              className="w-fit relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="w-fit relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Contact
+            </Link>
+
+            <a
+              href="tel:+919954851207"
+              className="group flex items-center justify-center gap-2 rounded-full border border-green-600 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-green-600 hover:text-white"
+            >
+              <LuPhoneCall className="text-lg text-green-600 transition group-hover:text-white" />
+              Call Now
+            </a>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
