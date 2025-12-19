@@ -46,7 +46,7 @@ export default function ContactPage() {
               <div className="flex items-center gap-4">
                 <FaPhoneAlt className="text-lg text-slate-900" />
                 <a href="tel:+919954851207" className="hover:underline">
-                  +91 98765 43210
+                  +91 9954851207
                 </a>
               </div>
 
