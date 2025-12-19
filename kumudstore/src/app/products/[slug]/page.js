@@ -16,8 +16,8 @@ export default async function ProductDetail({ params }) {
   }
 
   // ✅ WhatsApp config
-  const phoneNumber = "919876543210"; // change if needed
-  const productUrl = `https://yourdomain.com/products/${product.slug}`;
+  const phoneNumber = "919954851207"; // change if needed
+  const productUrl = `https://mkframes.vercel.app/products/${product.slug}`;
   const whatsappMessage = encodeURIComponent(
     `Hi sir, I want to buy this ${product.title}\n${productUrl}`
   );
