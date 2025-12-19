@@ -37,7 +37,7 @@ export default function Hero() {
               View Designs
             </a>
             <a
-              href="tel:+919954851207"
+              href="tel:+919876543210"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center justify-center gap-2 rounded-full border border-green-600 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-green-600 hover:text-white"

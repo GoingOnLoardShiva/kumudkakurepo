@@ -165,7 +165,7 @@ export default function AboutPage() {
             needs.
           </p>
           <a
-            href="https://wa.me/919954851207"
+            href="https://wa.me/919876543210"
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-medium text-slate-900 hover:bg-slate-100 transition"
           >
             <FaWhatsapp className="text-lg text-green-600" />

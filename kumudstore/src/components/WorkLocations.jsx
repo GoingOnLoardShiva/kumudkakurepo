@@ -36,7 +36,7 @@ export default function OwnerLocation() {
           {/* CONTACT DETAILS */}
           <div className="rounded-2xl bg-white p-8 shadow-sm">
             <h3 className="text-2xl font-semibold text-slate-900">
-              Kumud Designs
+              MK Frames Work
             </h3>
             <p className="mt-2 text-slate-600">
               Specialists in Chokhat, Compound Wall & Boundary Designs
@@ -54,12 +54,12 @@ export default function OwnerLocation() {
 
               <div className="flex gap-3">
                 <LuPhoneCall className="mt-1 text-lg text-slate-500" />
-                <p>+919954851207</p>
+                <p>+91 98765 43210</p>
               </div>
 
               <div className="flex gap-3">
                 <MdAlternateEmail className="mt-1 text-lg text-slate-500" />
-                <p>contact@mkframeswork@gmai.com</p>
+                <p>contact@kumuddesigns.com</p>
               </div>
 
               <div className="flex gap-3">
@@ -74,7 +74,7 @@ export default function OwnerLocation() {
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="tel:+919954851207"
+                href="tel:+919876543210"
                 className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800"
               >
                 <LuPhoneCall className="text-lg" />
@@ -82,7 +82,7 @@ export default function OwnerLocation() {
               </a>
 
               <a
-                href="https://wa.me/919954851207"
+                href="https://wa.me/919876543210"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100"
