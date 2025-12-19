@@ -54,12 +54,12 @@ export default function OwnerLocation() {
 
               <div className="flex gap-3">
                 <LuPhoneCall className="mt-1 text-lg text-slate-500" />
-                <p>+91 98765 43210</p>
+                <p>+919954851207</p>
               </div>
 
               <div className="flex gap-3">
                 <MdAlternateEmail className="mt-1 text-lg text-slate-500" />
-                <p>contact@kumuddesigns.com</p>
+                <p>contact@mkframeswork@gmai.com</p>
               </div>
 
               <div className="flex gap-3">
@@ -74,7 +74,7 @@ export default function OwnerLocation() {
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="tel:+919876543210"
+                href="tel:+919954851207"
                 className="flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800"
               >
                 <LuPhoneCall className="text-lg" />
@@ -82,7 +82,7 @@ export default function OwnerLocation() {
               </a>
 
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/919954851207"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100"
