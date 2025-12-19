@@ -64,7 +64,7 @@ export default async function ProductDetail({ params }) {
               href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-green-600 hover:text-white"
+              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-black"
             >
               <FaWhatsapp className="text-green-600 transition group-hover:text-white" />
               WhatsApp

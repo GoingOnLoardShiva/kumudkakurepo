@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 const categories = [
   {
@@ -35,8 +36,8 @@ export default function ProductCategory() {
             Browse by Category
           </h2>
           <p className="mt-4 text-slate-600">
-            Explore our wide range of chokhat and compound wall designs — crafted
-            for strength, beauty, and long-lasting performance.
+            Explore our wide range of chokhat and compound wall designs —
+            crafted for strength, beauty, and long-lasting performance.
           </p>
         </div>
 
@@ -62,16 +63,16 @@ export default function ProductCategory() {
                 <h3 className="text-lg font-semibold text-slate-900">
                   {item.title}
                 </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  {item.desc}
-                </p>
+                <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
 
-                <button className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-slate-700">
-                  View Designs
-                  <span className="transition group-hover:translate-x-1">
-                    →
-                  </span>
-                </button>
+                <Link href="/products">
+                  <button className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-slate-700 group">
+                    View Designs
+                    <span className="transition group-hover:translate-x-1">
+                      →
+                    </span>
+                  </button>
+                </Link>
               </div>
             </div>
           ))}
