@@ -45,7 +45,7 @@ export default function ContactPage() {
 
               <div className="flex items-center gap-4">
                 <FaPhoneAlt className="text-lg text-slate-900" />
-                <a href="tel:+919876543210" className="hover:underline">
+                <a href="tel:+9199548 51207" className="hover:underline">
                   +91 98765 43210
                 </a>
               </div>
@@ -56,7 +56,7 @@ export default function ContactPage() {
                   href="mailto:contact@kumuddesigns.com"
                   className="hover:underline"
                 >
-                  contact@kumuddesigns.com
+                  contact@mkframework@gmail.com
                 </a>
               </div>
             </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
             {/* CTA */}
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="tel:+919876543210"
+                href="tel:+9199548 51207"
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800 transition"
               >
                 <FaPhoneAlt />
@@ -72,7 +72,7 @@ export default function ContactPage() {
               </a>
 
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/9199548 51207
                 target="_blank"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-100 transition"
               >
