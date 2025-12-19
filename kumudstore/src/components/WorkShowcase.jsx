@@ -12,17 +12,17 @@ const videos = [
   {
     title: "Modern Compound Wall Installation",
     location: "Ahmedabad",
-    src: "https://www.youtube.com/watch?v=ImaTuIX8rUQ",
+    embedId: "ImaTuIX8rUQ",
   },
   {
     title: "Designer Chokhat Project",
     location: "Surat",
-    src: "https://www.youtube.com/watch?v=oSpujkDfY6U",
+    embedId: "oSpujkDfY6U",
   },
   {
     title: "Boundary Wall Construction",
     location: "Vadodara",
-    src: "https://www.youtube.com/watch?v=FfKvop0hV0o",
+    embedId: "FfKvop0hV0o",
   },
 ];
 
@@ -84,7 +84,7 @@ export default function WorkShowcase() {
         {/* CTA */}
         <div className="mt-20 text-left md:text-center">
           <h3 className="text-2xl font-bold text-slate-900">
-            Want to See Your Project Here?
+            Want to See Your Compuend Wall Here?
           </h3>
           <p className="mt-3 text-slate-600">
             Let’s build something strong, durable, and beautiful together.
@@ -93,7 +93,7 @@ export default function WorkShowcase() {
             href="/contact"
             className="mt-6 inline-block rounded-full bg-slate-900 px-8 py-3 text-sm font-medium text-white hover:bg-slate-800"
           >
-            Start Your Project
+            Place Your Wall
           </a>
         </div>
       </div>

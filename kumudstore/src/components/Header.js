@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { LuPhoneCall } from "react-icons/lu";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -17,27 +18,48 @@ export default function Header() {
             <Link href="/" className="flex items-center gap-3">
               <div className="relative h-9 w-9 rounded-md overflow-hidden bg-slate-100">
                 <Image
-                  src="/images/placeholder-boundary.svg"
+                  src="/images/mkmain.png"
                   alt="logo"
                   fill
                   className="object-cover"
                 />
               </div>
               <span className="font-semibold text-slate-900">
-                Kumud Designs
+                MK FRAME WORK
               </span>
             </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/products" className="nav-link">Products</Link>
-              <Link href="/about" className="nav-link">About</Link>
-              <Link href="/contact" className="nav-link">Contact</Link>
-              <a
-                href="#contact"
-                className="ml-2 rounded-full bg-slate-900 px-4 py-2 text-sm text-white hover:bg-slate-800 transition"
+              <Link
+                href="/products"
+                className="relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
               >
-                Get a Quote
+                Products
+              </Link>
+
+              <Link
+                href="/about"
+                className="relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                About
+              </Link>
+
+              <Link
+                href="/contact"
+                className="relative nav-link after:absolute after:left-0 after:-bottom-1 after:h-[2px] after:w-0 after:bg-slate-900 after:transition-all after:duration-300 hover:after:w-full"
+              >
+                Contact
+              </Link>
+
+              <a
+                href="tel:+919876543210"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-center gap-2 rounded-full border border-green-600 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-green-600 hover:text-white"
+              >
+                <LuPhoneCall className="text-lg text-green-600 transition group-hover:text-white" />
+                Call Now
               </a>
             </nav>
 
@@ -76,9 +98,15 @@ export default function Header() {
         {open && (
           <div className="absolute left-0 right-0 mt-3 rounded-2xl bg-white shadow-lg border border-slate-200 md:hidden">
             <div className="flex flex-col gap-4 px-6 py-4">
-              <Link href="/products" onClick={() => setOpen(false)}>Products</Link>
-              <Link href="/about" onClick={() => setOpen(false)}>About</Link>
-              <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+              <Link href="/products" onClick={() => setOpen(false)}>
+                Products
+              </Link>
+              <Link href="/about" onClick={() => setOpen(false)}>
+                About
+              </Link>
+              <Link href="/contact" onClick={() => setOpen(false)}>
+                Contact
+              </Link>
               <a
                 href="#contact"
                 onClick={() => setOpen(false)}

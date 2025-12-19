@@ -7,16 +7,17 @@ export default function AboutPage() {
   return (
     <main className="bg-white">
       {/* HERO */}
-      <section className="relative bg-slate-50 py-20">
+      <section className="relative bg-slate-50 py-30">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="max-w-3xl text-left md:text-center mx-auto">
             <h1 className="text-4xl font-bold text-slate-900 sm:text-5xl">
-              Building Strength. Crafting Design.
+              Strength in Structure. Simplicity in Design.
             </h1>
             <p className="mt-4 text-lg text-slate-600">
-              We design and manufacture premium chokhat, compound wall, and
-              boundary solutions that combine durability with architectural
-              elegance.
+              We manufacture high-quality chokhat, compound wall, and boundary
+              products using durable, readymade frames. Our focus is on reliable
+              construction and consistent design — we do not offer customized
+              designs.
             </p>
           </div>
         </div>
@@ -66,7 +67,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative mt-12 grid gap-10 sm:grid-cols-2 place-items-center">
             {[
               {
                 title: "Quality Materials",
@@ -77,19 +78,43 @@ export default function AboutPage() {
                 desc: "Precision-built designs shaped by skilled professionals.",
               },
               {
-                title: "Custom Solutions",
-                desc: "Designs tailored exactly to your property and preferences.",
+                title: "Ready Products",
+                desc: "Efficient manufacturing ensures timely delivery of standard designs.",
               },
               {
                 title: "Trusted Service",
                 desc: "Clear communication and dependable delivery every time.",
               },
             ].map((item, i) => (
-              <div key={i} className="rounded-2xl bg-white p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-slate-900">
-                  {item.title}
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
+              <div key={i} className="relative w-full max-w-sm">
+                {/* RIGHT ARROW (Desktop: 1 → 2, 3 → 4) */}
+                {(i === 0 || i === 2) && (
+                  <span className="hidden sm:block absolute right-[-36px] top-1/2 h-[2px] w-8 bg-green-600">
+                    <span className="absolute right-0 -top-[5px] h-3 w-3 rotate-45 border-t-2 border-r-2 border-green-600"></span>
+                  </span>
+                )}
+
+                {/* DOWN ARROW (Desktop: 2 → 4) */}
+                {/* {i === 1 && (
+                  <span className="hidden sm:block absolute bottom-[-36px] left-1/2 h-8 w-[2px] bg-green-600">
+                    <span className="absolute -bottom-1 -left-[5px] h-3 w-3 rotate-45 border-r-2 border-b-2 border-green-600"></span>
+                  </span>
+                )} */}
+
+                {/* DOWN ARROW (Mobile: vertical flow) */}
+                {i !== 3 && (
+                  <span className="sm:hidden absolute bottom-[-36px] left-1/2 h-8 w-[2px] bg-green-600">
+                    <span className="absolute -bottom-1 -left-[5px] h-3 w-3 rotate-45 border-r-2 border-b-2 border-green-600"></span>
+                  </span>
+                )}
+
+                {/* CARD */}
+                <div className="rounded-2xl bg-white p-6 text-center shadow-sm">
+                  <h3 className="text-lg font-semibold text-slate-900">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -107,10 +132,9 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 place-items-center">
             {[
               "Requirement & Consultation",
-              "Design & Customization",
               "Manufacturing & Quality Check",
               "Delivery & Installation",
             ].map((step, index) => (

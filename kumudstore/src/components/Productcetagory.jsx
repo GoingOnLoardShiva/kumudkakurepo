@@ -6,22 +6,22 @@ const categories = [
   {
     title: "Chokhat (Caukhat)",
     desc: "Premium entrance chokhat designs with durability and elegance.",
-    image: "/images/coukath2.jpg",
+    image: "/images/coukath.png",
   },
   {
-    title: "Compound Wall",
-    desc: "Strong and stylish compound wall patterns for modern homes.",
-    image: "/images/boundry prestressed wall.webp",
+    title: "Folding Compound Wall",
+    desc: "Strong and stylish folding compound wall patterns for modern homes.",
+    image: "/images/compound-wall.jpg",
   },
   {
     title: "Gate & Boundary Panels",
     desc: "Designer gate and boundary wall panels for all architectures.",
-    image: "/images/black-vertical-panel-fence-concrete-260nw-2703130285.webp",
+    image: "/images/gate-wall6.jpg",
   },
   {
-    title: "Custom Creations",
-    desc: "Tailor-made designs crafted exactly as per your needs.",
-    image: "/images/cement-floor-designs.jpg",
+    title: "Precast Concrete Ventilation Panels",
+    desc: "Designer window panels for better ventilation and aesthetics.",
+    image: "/images/window.jpg",
   },
 ];
 
@@ -41,7 +41,7 @@ export default function ProductCategory() {
         </div>
 
         {/* Category Grid */}
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ">
           {categories.map((item, index) => (
             <div
               key={index}
