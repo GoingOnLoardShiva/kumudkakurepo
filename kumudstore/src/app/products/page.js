@@ -1,28 +1,86 @@
 import Link from "next/link";
 import Image from "next/image";
 import { products } from "../../lib/products";
+import { FaOpencart } from "react-icons/fa";
 
 export default function ProductsPage() {
   return (
-    <section className="py-26">
-      <div className="mx-auto max-w-6xl px-6">
-        <h1 className="text-3xl font-bold">Our Products</h1>
-        <p className="mt-2 text-slate-600">Explore our boundary walls, chokhats, and entrance solutions.</p>
+    <section className="py-26 bg-slate-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto">
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-900">
+            Our Products
+          </h1>
+          <p className="mt-3 text-slate-600">
+            Explore our premium boundary walls, chokhats, and entrance solutions.
+          </p>
+        </div>
 
-        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {/* Product Grid */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((p) => (
-            <Link key={p.slug} href={`/products/${p.slug}`} className="block rounded-lg border bg-white p-3 shadow-sm hover:shadow-md">
-              <div className="relative h-36 w-full rounded-md bg-slate-50">
-                <Image src={p.img} alt={p.title} fill sizes="(max-width: 640px) 100vw, 240px" className="object-cover rounded-md" />
+            <Link
+              key={p.slug}
+              href={`/products/${p.slug}`}
+              className="group rounded-2xl bg-white shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
+            >
+              {/* Image */}
+              <div className="relative h-44 w-full overflow-hidden">
+                <Image
+                  src={p.img}
+                  alt={p.title}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 300px"
+                  className="object-cover transition-transform duration-500 group-hover:scale-110"
+                />
               </div>
-              <h3 className="mt-3 text-sm font-medium text-slate-900">{p.title}</h3>
+
+              {/* Content */}
+              <div className="p-4 flex flex-col gap-3">
+                <h3 className="text-lg font-semibold text-slate-900">
+                  {p.title}
+                </h3>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  <span className="text-blue-600 text-xs px-2 py-1 border border-blue-200 bg-blue-50 rounded-full">
+                    Installation Free
+                  </span>
+                  <span className="text-green-600 text-xs px-2 py-1 border border-green-200 bg-green-50 rounded-full">
+                    Home Delivery
+                  </span>
+                </div>
+
+                {/* CTA */}
+                <button
+                  className="
+                    mt-3 group/button flex items-center justify-center gap-2
+                    w-full
+                    bg-black text-white
+                    py-2.5 rounded-full
+                    text-sm font-medium
+                    transition-all duration-300
+                    hover:bg-gray-900
+                    active:scale-95
+                  "
+                >
+                  <FaOpencart
+                    size={16}
+                    className="transition-transform duration-300 group-hover/button:translate-x-1"
+                  />
+                  <span>Order Now</span>
+                </button>
+              </div>
             </Link>
-          ))} 
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
 // "use client";
 
 // import React from "react";
@@ -43,7 +101,7 @@ export default function ProductsPage() {
 //         </h1>
 
 //         <p className="mt-3 text-sm text-slate-600">
-//           We’re working hard to bring you this page.  
+//           We’re working hard to bring you this page.
 //           Please check back soon or contact us for immediate assistance.
 //         </p>
 

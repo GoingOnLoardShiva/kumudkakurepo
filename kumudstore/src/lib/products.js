@@ -5,8 +5,9 @@ export const products = [
     title: "Modern Boundary Wall",
     img: "/images/compound-wall.jpg",
     description: "A clean modern boundary wall featuring wood inlays and textured plaster.",
-    price: 1299,
     features: ["Durable finish", "Customizable height", "Integrated planter options"],
+    homeDelivery: true,
+    freeInstallation: true,
   },
   {
     id: 2,
@@ -14,8 +15,9 @@ export const products = [
     title: "Window Coukath",
     img: "/images/coukath.png",
     description: "Elegant window coukath with intricate brass detailing for a luxurious touch.",
-    price: 899,
     features: ["High-quality cement", "Weather resistant"],
+    homeDelivery: true,
+    freeInstallation: true,
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ export const products = [
     title: "Minimal Concrete Get Boundary Wall",
     img: "/images/gate-wall6.jpg",
     description: "Minimalist concrete boundary wall with clean lines and integrated lighting.",
-    price: 999,
     features: ["Low maintenance", "Integrated lighting", "Cost effective"],
+    homeDelivery: true,
+    freeInstallation: true,
   },
 ];

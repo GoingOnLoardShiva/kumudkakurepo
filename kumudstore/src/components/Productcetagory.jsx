@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
+import { FaChevronRight } from "react-icons/fa6";
 
 const categories = [
   {
@@ -65,18 +66,22 @@ export default function ProductCategory() {
                 </h3>
                 <p className="mt-2 text-sm text-slate-600">{item.desc}</p>
 
-                <Link href="/products">
-                  <button className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-slate-900 hover:text-slate-700 group">
-                    View Designs
-                    <span className="transition group-hover:translate-x-1">
-                      →
-                    </span>
-                  </button>
-                </Link>
+
               </div>
             </div>
           ))}
         </div>
+        <div className="vew-button w-full flex justify-center py-10">
+          <Link href="/products">
+            <button className="mt-4 inline-flex items-center gap-2 text-sm font-medium p-2 px-4 bg-green-500 rounded-full cursor-pointer text-slate-900 hover:text-slate-700 group">
+              View Designs
+              <span className="transition group-hover:translate-x-1">
+                <FaChevronRight width={20}/>
+              </span>
+            </button>
+          </Link>
+        </div>
+
       </div>
     </section>
   );

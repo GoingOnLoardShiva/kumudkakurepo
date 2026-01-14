@@ -2,6 +2,8 @@ import Image from "next/image";
 import { products } from "../../../lib/products";
 import { LuPhoneCall } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
+import { CiCircleCheck } from "react-icons/ci";
+
 
 export default async function ProductDetail({ params }) {
   const { slug } = await params;
@@ -9,67 +11,99 @@ export default async function ProductDetail({ params }) {
 
   if (!product) {
     return (
-      <div className="py-20">
-        <div className="mx-auto max-w-6xl px-6">Product not found</div>
+      <div className="py-24 text-center text-slate-600">
+        Product not found
       </div>
     );
   }
 
-  // ✅ WhatsApp config
-  const phoneNumber = "919954851207"; // change if needed
+  // WhatsApp config
+  const phoneNumber = "919954851207";
   const productUrl = `https://mkframes.vercel.app/products/${product.slug}`;
   const whatsappMessage = encodeURIComponent(
-    `Hi sir, I want to buy this ${product.title}\n${productUrl}`
+    `Hi sir, I want to buy this product:\n${product.title}\n${productUrl}`
   );
 
   return (
-    <section className="py-26">
-      <div className="mx-auto max-w-6xl px-6 grid grid-cols-1 gap-8 md:grid-cols-2">
-        {/* Image */}
-        <div className="relative h-80 w-full rounded-lg bg-slate-100">
-          <Image
-            src={product.img}
-            alt={product.title}
-            fill
-            className="object-cover rounded-lg"
-          />
+    <section className="py-26 bg-slate-50">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-10">
+
+        {/* Image Section */}
+        <div className="relative">
+          <div className="relative h-[420px] rounded-2xl overflow-hidden bg-white shadow-sm">
+            <Image
+              src={product.img}
+              alt={product.title}
+              fill
+              priority
+              className="object-cover transition-transform duration-500 hover:scale-105"
+            />
+          </div>
+
+          {/* Floating badges */}
+          <div className="absolute top-4 left-4 flex gap-2">
+            <span className="rounded-full bg-blue-50 text-blue-600 px-3 py-1 text-xs font-medium">
+              Installation Free
+            </span>
+            <span className="rounded-full bg-green-50 text-green-600 px-3 py-1 text-xs font-medium">
+              Home Delivery
+            </span>
+          </div>
         </div>
 
-        {/* Content */}
-        <div> 
-          <h1 className="text-2xl font-bold">{product.title}</h1>
-          <p className="mt-3 text-slate-600">{product.description}</p>
+        {/* Content Section */}
+        <div className="flex flex-col justify-center">
+          <h1 className="text-3xl font-bold text-slate-900">
+            {product.title}
+          </h1>
 
-          <ul className="mt-6 space-y-2">
-            {product.features.map((f) => (
-              <li key={f} className="text-slate-700">
-                • {f}
-              </li>
-            ))}
-          </ul>
+          <p className="mt-4 text-slate-600 leading-relaxed">
+            {product.description}
+          </p>
 
-          {/* Actions */}
-          <div className="mt-6 flex gap-3">
+          {/* Features */}
+          <div className="mt-6">
+            <h3 className="text-lg font-semibold text-slate-800 mb-3">
+              Product Features
+            </h3>
+
+            <ul className="space-y-3">
+              {product.features.map((f) => (
+                <li key={f} className="flex items-start gap-3 text-slate-700">
+                  <CiCircleCheck className="mt-0.5 h-5 w-5 text-green-600" />
+                  <span>{f}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* CTA Buttons */}
+          <div className="mt-8 flex flex-col sm:flex-row gap-4">
             {/* Call */}
             <a
               href="tel:+919954851207"
-              className="group flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-green-600 hover:text-white"
+              className="group flex items-center justify-center gap-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-gray-900"
             >
-              <LuPhoneCall className="text-lg text-green-600 transition group-hover:text-white" />
+              <LuPhoneCall className="text-lg transition group-hover:rotate-6" />
               Call Now
             </a>
 
-            {/* WhatsApp with Message */}
+            {/* WhatsApp */}
             <a
               href={`https://wa.me/${phoneNumber}?text=${whatsappMessage}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full border border-slate-300 px-6 py-3 text-sm font-medium text-slate-700 transition hover:bg-white hover:text-black"
+              className="group flex items-center justify-center gap-2 rounded-full border border-green-500 px-6 py-3 text-sm font-medium text-green-600 transition hover:bg-green-600 hover:text-white"
             >
-              <FaWhatsapp className="text-green-600 transition group-hover:text-white" />
+              <FaWhatsapp className="text-lg transition group-hover:scale-110" />
               WhatsApp
             </a>
           </div>
+
+          {/* Trust Text */}
+          <p className="mt-4 text-xs text-slate-500">
+            ✔ Trusted by 500+ customers • ✔ Quality assured • ✔ Fast installation
+          </p>
         </div>
       </div>
     </section>
