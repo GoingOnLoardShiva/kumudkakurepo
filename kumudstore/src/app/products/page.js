@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { products } from "../../lib/products";
+import { products } from "../../lib/productsa";
 import { FaOpencart } from "react-icons/fa";
 
 export default function ProductsPage() {

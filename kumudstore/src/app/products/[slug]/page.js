@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { products } from "../../../lib/products";
+import { products } from "../../../lib/productsa";
 import { LuPhoneCall } from "react-icons/lu";
 import { FaWhatsapp } from "react-icons/fa";
 import { CiCircleCheck } from "react-icons/ci";

@@ -2,14 +2,14 @@ import { NextResponse } from "next/server";
 import fs from "fs/promises";
 import path from "path";
 
-// 1. Point to a JSON file instead of a JS file
-const productsFilePath = path.join(process.cwd(), "src/lib", "products.json");
+// 1. Point to a .js file
+const productsFilePath = path.join(process.cwd(), "src/lib", "productsa.js");
 
 export async function POST(req) {
   try {
     const data = await req.formData();
     
-    // Handle Image (keeping your existing logic)
+    // Image Handling logic
     const image = data.get("img");
     let imgPath = "/images/default.jpg";
     if (image && typeof image !== "string") {
@@ -18,19 +18,19 @@ export async function POST(req) {
       const fileName = `${Date.now()}-${image.name}`;
       const uploadDir = path.join(process.cwd(), "public/images");
       
-      // Ensure directory exists
       await fs.mkdir(uploadDir, { recursive: true });
       await fs.writeFile(path.join(uploadDir, fileName), buffer);
       imgPath = `/images/${fileName}`;
     }
 
-    // 2. Read existing products from JSON file
+    // 2. Read existing products from the .js file
     let products = [];
     try {
-      const fileData = await fs.readFile(productsFilePath, "utf-8");
-      products = JSON.parse(fileData);
+      const fileContent = await fs.readFile(productsFilePath, "utf-8");
+      // Extract the JSON part from "export const products = [...];"
+      const jsonString = fileContent.replace("export const products = ", "").replace(/;$/, "");
+      products = JSON.parse(jsonString);
     } catch (e) {
-      // If file doesn't exist yet, we start with empty array
       products = [];
     }
 
@@ -45,11 +45,13 @@ export async function POST(req) {
       freeInstallation: data.get("freeInstallation") === "true",
     };
 
-    // 3. Add to array and Save back to JSON
     products.push(newProduct);
-    await fs.writeFile(productsFilePath, JSON.stringify(products, null, 2));
 
-    return NextResponse.json({ message: "Product saved!", product: newProduct }, { status: 201 });
+    // 3. Write back as a JavaScript Export
+    const fileOutput = `export const products = ${JSON.stringify(products, null, 2)};`;
+    await fs.writeFile(productsFilePath, fileOutput);
+
+    return NextResponse.json({ message: "Product saved to JS file!", product: newProduct }, { status: 201 });
 
   } catch (error) {
     console.error("Save error:", error);

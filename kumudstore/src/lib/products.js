@@ -1,4 +1,5 @@
 export const products = [
+
   {
     id: 1,
     slug: "modern-boundary-wall",
