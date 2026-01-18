@@ -1,4 +1,3 @@
-"use client"
 import Image from "next/image";
 import { products } from "../../../lib/productsa";
 import { LuPhoneCall } from "react-icons/lu";
@@ -20,7 +19,7 @@ export default async function ProductDetail({ params }) {
 
   // WhatsApp config
   const phoneNumber = "919954851207";
-  const productUrl = `${window.location.origin}/products/${product.slug}`;
+  const productUrl = `https://mkframework.shop/products/${product.slug}`;
   const whatsappMessage = encodeURIComponent(
     `Hi sir, I want to buy this product:\n${product.title}\n${productUrl}`
   );
