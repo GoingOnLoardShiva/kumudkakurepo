@@ -10,7 +10,7 @@ export default function AdminDashboard() {
   const [freeInstallation, setFreeInstallation] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-  
+
   // New: Loading and Status states
   const [isLoading, setIsLoading] = useState(false);
   const [statusMsg, setStatusMsg] = useState({ type: "", text: "" });
@@ -90,7 +90,12 @@ export default function AdminDashboard() {
       setIsLoading(false);
     }
   };
-
+  if (isLoading) return <div className=" z-10 min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+      <p className="text-gray-500 font-medium">Loading Product Data...</p>
+    </div>
+  </div>
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-10">
       <div className="max-w-3xl mx-auto">
@@ -98,12 +103,11 @@ export default function AdminDashboard() {
         <p className="text-gray-500 mb-8">Fill in the details below to add a product to the Supabase database.</p>
 
         <form onSubmit={handleSubmit} className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 space-y-6">
-          
+
           {/* Status Message */}
           {statusMsg.text && (
-            <div className={`p-4 rounded-lg text-sm font-medium ${
-              statusMsg.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
-            }`}>
+            <div className={`p-4 rounded-lg text-sm font-medium ${statusMsg.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+              }`}>
               {statusMsg.text}
             </div>
           )}
@@ -199,9 +203,8 @@ export default function AdminDashboard() {
           <button
             type="submit"
             disabled={isLoading}
-            className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2 ${
-              isLoading ? "bg-indigo-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98]"
-            }`}
+            className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2 ${isLoading ? "bg-indigo-400 cursor-not-allowed" : "bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98]"
+              }`}
           >
             {isLoading ? (
               <>

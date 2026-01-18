@@ -8,7 +8,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState("list");
 
   return (
-    <div className="min-h-screen mt-26 p-4 md:p-10">
+    <div className="min-h-screen  p-4 md:p-10">
       <div className="max-w-6xl mx-auto">
         <header className="mb-8">
           <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">

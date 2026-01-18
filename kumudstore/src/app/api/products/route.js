@@ -5,26 +5,8 @@ export async function POST(req) {
   try {
     const data = await req.formData();
     const image = data.get("img");
-    let imgPublicUrl = "";
 
-    // 1. Upload Image to Supabase Storage
-    if (image && typeof image !== "string") {
-      const fileName = `${Date.now()}-${image.name}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from("product-images")
-        .upload(fileName, image);
-
-      if (uploadError) throw uploadError;
-
-      // Get the Public URL for the uploaded image
-      const { data: publicUrlData } = supabase.storage
-        .from("product-images")
-        .getPublicUrl(fileName);
-      
-      imgPublicUrl = publicUrlData.publicUrl;
-    }
-
-    // 2. Insert Product Data into Supabase Database
+    // 1. Insert Product Data first (WITHOUT the image URL yet)
     const { data: newProduct, error: dbError } = await supabase
       .from("products")
       .insert([
@@ -33,23 +15,56 @@ export async function POST(req) {
           title: data.get("productName"),
           description: data.get("description"),
           features: JSON.parse(data.get("features") || "[]"),
-          img: imgPublicUrl,
+          img: "", // Temporary empty string
           homeDelivery: data.get("homeDelivery") === "true",
           freeInstallation: data.get("freeInstallation") === "true",
         },
       ])
-      .select();
+      .select()
+      .single(); // Use .single() to get the object directly
 
     if (dbError) throw dbError;
 
-    return NextResponse.json({ message: "Product saved!", product: newProduct[0] }, { status: 201 });
+    // 2. ONLY IF DATABASE SAVED: Upload the image
+    if (image && typeof image !== "string") {
+      const fileName = `${Date.now()}-${image.name}`;
+      
+      const { data: uploadData, error: uploadError } = await supabase.storage
+        .from("product-images")
+        .upload(fileName, image);
+
+      // If image upload fails, you might want to delete the product or just log it
+      if (uploadError) {
+        console.error("Image upload failed, but product was created:", uploadError);
+        return NextResponse.json({ 
+          message: "Product saved, but image upload failed.", 
+          product: newProduct 
+        }, { status: 201 });
+      }
+
+      // 3. Get Public URL and UPDATE the product row
+      const { data: publicUrlData } = supabase.storage
+        .from("product-images")
+        .getPublicUrl(fileName);
+      
+      const imgPublicUrl = publicUrlData.publicUrl;
+
+      await supabase
+        .from("products")
+        .update({ img: imgPublicUrl })
+        .eq("id", newProduct.id);
+        
+      // Update local object for the response
+      newProduct.img = imgPublicUrl;
+    }
+
+    return NextResponse.json({ message: "Product and Image saved!", product: newProduct }, { status: 201 });
 
   } catch (error) {
-    console.error("Supabase Save Error:", error);
+    console.error("Operation Error:", error);
     return NextResponse.json({ message: error.message }, { status: 500 });
   }
 }
-
 
 export async function GET() {
   try {

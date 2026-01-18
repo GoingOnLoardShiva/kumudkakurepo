@@ -29,7 +29,7 @@ const categories = [
 
 export default function ProductCategory() {
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-slate-50 py-20" id="products">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="mx-auto max-w-2xl text-left md:text-center">
@@ -45,7 +45,8 @@ export default function ProductCategory() {
         {/* Category Grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4 ">
           {categories.map((item, index) => (
-            <div
+            <a
+              href="/products"
               key={index}
               className="group overflow-hidden rounded-2xl bg-white shadow-sm transition hover:shadow-xl"
             >
@@ -68,7 +69,7 @@ export default function ProductCategory() {
 
 
               </div>
-            </div>
+            </a>
           ))}
         </div>
         <div className="vew-button w-full flex justify-center py-10">
@@ -76,7 +77,7 @@ export default function ProductCategory() {
             <button className="mt-4 inline-flex items-center gap-2 text-sm font-medium p-2 px-4 bg-green-500 rounded-full cursor-pointer text-slate-900 hover:text-slate-700 group">
               View Designs
               <span className="transition group-hover:translate-x-1">
-                <FaChevronRight width={20}/>
+                <FaChevronRight width={20} />
               </span>
             </button>
           </Link>

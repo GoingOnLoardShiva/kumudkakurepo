@@ -10,7 +10,7 @@ export default function AdminProductList() {
   // Fetch Products
   const fetchProducts = async () => {
     try {
-      const res = await fetch("/api/products",{
+      const res = await fetch("/api/products", {
         method: "GET"
       }); // Ensure your GET api/products returns all
       const data = await res.json();
@@ -43,7 +43,12 @@ export default function AdminProductList() {
     }
   };
 
-  if (loading) return <div className="p-10 text-center">Loading Inventory...</div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="flex flex-col items-center gap-4">
+      <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
+      <p className="text-gray-500 font-medium">Loading Product Data...</p>
+    </div>
+  </div>
 
   return (
     <div className="max-w-6xl mx-auto p-6">
@@ -51,9 +56,9 @@ export default function AdminProductList() {
         <h1 className="text-2xl font-bold text-gray-800 flex items-center gap-2">
           <FiPackage /> Product Inventory
         </h1>
-        <Link href="/admin/add" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
-          + Add New Product
-        </Link>
+        {/* <Link href="/add" className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700">
+          + Add  Product
+        </Link> */}
       </div>
 
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
@@ -84,9 +89,9 @@ export default function AdminProductList() {
                     <Link href={`/admin/edit/${product.id}`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-md" title="Edit">
                       <FiEdit size={18} />
                     </Link>
-                    <button 
+                    <button
                       onClick={() => handleDelete(product.id)}
-                      className="p-2 text-red-600 hover:bg-red-50 rounded-md" 
+                      className="p-2 text-red-600 hover:bg-red-50 rounded-md"
                       title="Delete"
                     >
                       <FiTrash2 size={18} />

@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import WorkShowcase from "@/components/WorkShowcase";
 import WorkLocations from "@/components/WorkLocations";
 
+
 export default function Home() {
   return (
     <SmoothScroll>
