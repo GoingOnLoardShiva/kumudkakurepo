@@ -3,6 +3,11 @@ import Image from "next/image";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa6";
 
+export const metadata = {
+  title: "About Us",
+  description: "Learn about MK Frame Work's history and our commitment to quality chokhat solutions in Kokrajhar.",
+};
+
 export default function AboutPage() {
   return (
     <main className="bg-white">
