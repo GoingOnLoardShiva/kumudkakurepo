@@ -98,17 +98,10 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-
-        {/* Injecting the Schema for Sitelinks */}
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Google Analytics */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        {/* //google analytics// */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-27CD6CLE3T"
           strategy="afterInteractive"
