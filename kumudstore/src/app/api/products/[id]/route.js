@@ -2,20 +2,49 @@ import { NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
 
 export async function DELETE(req, { params }) {
-    try {
-        const { id } = await params;
+  try {
+      const { id } = await params;
 
-        const { error } = await supabase
-            .from("products")
-            .delete()
-            .eq("id", id);
+      // 1. Get the product data first to find the image URL
+      const { data: product, error: fetchError } = await supabase
+          .from("products")
+          .select("img")
+          .eq("id", id)
+          .single();
 
-        if (error) throw error;
+      if (fetchError) throw new Error("Product not found");
 
-        return NextResponse.json({ message: "Product deleted" });
-    } catch (error) {
-        return NextResponse.json({ message: error.message }, { status: 500 });
-    }
+      // 2. If an image exists, delete it from Storage
+      if (product?.img) {
+          // Extract filename from the URL 
+          // (e.g., https://.../product-images/123-image.jpg -> 123-image.jpg)
+          const urlParts = product.img.split('/');
+          const fileName = urlParts[urlParts.length - 1];
+
+          const { error: storageError } = await supabase.storage
+              .from("product-images")
+              .remove([fileName]);
+
+          if (storageError) {
+              console.error("Storage deletion failed:", storageError.message);
+              // We continue deleting the product row even if storage fails
+          }
+      }
+
+      // 3. Delete the product row from the database
+      const { error: dbError } = await supabase
+          .from("products")
+          .delete()
+          .eq("id", id);
+
+      if (dbError) throw dbError;
+
+      return NextResponse.json({ message: "Product and image deleted successfully" });
+
+  } catch (error) {
+      console.error("Delete Error:", error.message);
+      return NextResponse.json({ message: error.message }, { status: 500 });
+  }
 }
 export async function PUT(req, { params }) {
     try {

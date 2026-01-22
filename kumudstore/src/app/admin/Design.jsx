@@ -77,11 +77,11 @@ export default function AdminDashboard() {
 
       const result = await res.json();
 
-      if (res.ok) {
+      if (res === 201) {
         setStatusMsg({ type: "success", text: "Product added successfully!" });
         resetForm();
       } else {
-        setStatusMsg({ type: "error", text: result.message || "Failed to add product." });
+        setStatusMsg({ type: "success", text: result.message || "Failed to add product." });
       }
     } catch (err) {
       console.error(err);

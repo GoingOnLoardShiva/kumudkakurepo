@@ -8,10 +8,7 @@ import {
 } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-export const metadata = {
-  title: "About Us",
-  description: "Learn about MK Frame Work's history and our commitment to quality chokhat solutions in Kokrajhar.",
-};
+
 
 export default function ContactPage() {
   return (

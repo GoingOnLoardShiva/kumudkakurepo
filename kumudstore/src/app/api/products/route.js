@@ -4,68 +4,74 @@ import { supabase } from "@/lib/supabase";
 export async function POST(req) {
   try {
     const data = await req.formData();
-    const image = data.get("img");
+    
+    // 1. COLLECT TEXT DATA
+    const productInfo = {
+      slug: data.get("slug"),
+      title: data.get("productName"),
+      description: data.get("description"),
+      features: JSON.parse(data.get("features") || "[]"),
+      img: "", // Placeholder
+      homeDelivery: data.get("homeDelivery") === "true",
+      freeInstallation: data.get("freeInstallation") === "true",
+    };
 
-    // 1. Insert Product Data first (WITHOUT the image URL yet)
+    const imageFile = data.get("img");
+
+    // 2. INSERT TEXT DATA FIRST
     const { data: newProduct, error: dbError } = await supabase
       .from("products")
-      .insert([
-        {
-          slug: data.get("slug"),
-          title: data.get("productName"),
-          description: data.get("description"),
-          features: JSON.parse(data.get("features") || "[]"),
-          img: "", // Temporary empty string
-          homeDelivery: data.get("homeDelivery") === "true",
-          freeInstallation: data.get("freeInstallation") === "true",
-        },
-      ])
+      .insert([productInfo])
       .select()
-      .single(); // Use .single() to get the object directly
+      .single();
 
-    if (dbError) throw dbError;
+    if (dbError) {
+      console.error("DB Error:", dbError.message);
+      return NextResponse.json({ message: "Database Connection Failed", error: dbError.message }, { status: 500 });
+    }
 
-    // 2. ONLY IF DATABASE SAVED: Upload the image
-    if (image && typeof image !== "string") {
-      const fileName = `${Date.now()}-${image.name}`;
+    // 3. IF TEXT SAVED, UPLOAD IMAGE
+    if (imageFile && typeof imageFile !== "string") {
+      const fileName = `${newProduct.id}-${Date.now()}.jpg`;
       
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from("product-images")
-        .upload(fileName, image);
+      // Convert File to Buffer (Crucial for Node.js environments)
+      const arrayBuffer = await imageFile.arrayBuffer();
+      const buffer = Buffer.from(arrayBuffer);
 
-      // If image upload fails, you might want to delete the product or just log it
+      const { error: uploadError } = await supabase.storage
+        .from("product-images")
+        .upload(fileName, buffer, {
+          contentType: imageFile.type,
+          upsert: true
+        });
+
       if (uploadError) {
-        console.error("Image upload failed, but product was created:", uploadError);
-        return NextResponse.json({ 
-          message: "Product saved, but image upload failed.", 
-          product: newProduct 
-        }, { status: 201 });
+        console.error("Upload Error:", uploadError.message);
+        return NextResponse.json({ message: "Text saved, but image upload failed", product: newProduct }, { status: 201 });
       }
 
-      // 3. Get Public URL and UPDATE the product row
-      const { data: publicUrlData } = supabase.storage
+      // 4. GET URL AND UPDATE DATABASE
+      const { data: urlData } = supabase.storage
         .from("product-images")
         .getPublicUrl(fileName);
-      
-      const imgPublicUrl = publicUrlData.publicUrl;
+
+      const publicUrl = urlData.publicUrl;
 
       await supabase
         .from("products")
-        .update({ img: imgPublicUrl })
+        .update({ img: publicUrl })
         .eq("id", newProduct.id);
-        
-      // Update local object for the response
-      newProduct.img = imgPublicUrl;
+
+      newProduct.img = publicUrl;
     }
 
-    return NextResponse.json({ message: "Product and Image saved!", product: newProduct }, { status: 201 });
+    return NextResponse.json({ message: "All data saved successfully!", product: newProduct ,status: 201});
 
-  } catch (error) {
-    console.error("Operation Error:", error);
-    return NextResponse.json({ message: error.message }, { status: 500 });
+  } catch (err) {
+    console.error("Critical Error:", err);
+    return NextResponse.json({ message: "Server connection timed out or crashed" }, { status: 500 });
   }
 }
-
 export async function GET() {
   try {
     // 1. Fetch all products from the "products" table

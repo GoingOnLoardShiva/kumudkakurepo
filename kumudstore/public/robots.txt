@@ -2,4 +2,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /login
 
-Sitemap: https://www.mkframework.shop/sitemap.xml
+Sitemap: https://mkframework.shop/sitemap.xml
