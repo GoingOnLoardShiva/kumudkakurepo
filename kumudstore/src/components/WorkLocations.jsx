@@ -59,7 +59,7 @@ export default function OwnerLocation() {
 
               <div className="flex gap-3">
                 <MdAlternateEmail className="mt-1 text-lg text-slate-500" />
-                <p>contact@kumuddesigns.com</p>
+                <p>official@mail.mkframework.shop</p>
               </div>
 
               <div className="flex gap-3">

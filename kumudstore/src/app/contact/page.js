@@ -58,7 +58,7 @@ export default function ContactPage() {
                   href="mailto:contact@mkframework@gmail.com"
                   className="hover:underline"
                 >
-                  contact@mkframework@gmail.com
+                  official@mail.mkframework.shop
                 </a>
               </div>
             </div>
