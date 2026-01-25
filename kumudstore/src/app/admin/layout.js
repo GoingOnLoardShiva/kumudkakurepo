@@ -1,27 +1,37 @@
-// app/layout.js or RootLayout.jsx
 import React from "react";
 import { cookies } from "next/headers";
-import { verifyToken } from "@/lib/auth"; // your JWT verify function
+import { verifyToken } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import { headers } from "next/headers"; // Add this
 
 export default async function RootLayout({ children }) {
-  // Get cookies on server
   const cookieStore = await cookies();
   const token = cookieStore.get("admin_token")?.value;
+  
+  // Get the current URL path
+  const headerList = await headers();
+  const pathname = headerList.get("x-invoke-path") || ""; 
 
-  // If no token or invalid, redirect to login
+  // CHECK: If we are already on /login, DO NOT redirect, just show the page
+  if (pathname === "/login") {
+    return (
+      <html lang="en">
+        <body>{children}</body>
+      </html>
+    );
+  }
+
+  // Auth logic for all other pages
   if (!token) {
     redirect("/login");
   }
 
   try {
-    // Verify JWT token
-    verifyToken(token); // throw error if invalid
+    await verifyToken(token);
   } catch (err) {
     redirect("/login");
   }
 
-  // Token is valid → render children
   return (
     <html lang="en">
       <body>{children}</body>

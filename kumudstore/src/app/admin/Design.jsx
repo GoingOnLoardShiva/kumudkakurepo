@@ -77,11 +77,11 @@ export default function AdminDashboard() {
 
       const result = await res.json();
 
-      if (res === 201) {
+      if (res.status === 201) {
         setStatusMsg({ type: "success", text: "Product added successfully!" });
         resetForm();
       } else {
-        setStatusMsg({ type: "success", text: result.message || "Failed to add product." });
+        setStatusMsg({ type: "error", text: result.message || "Failed to add product." });
       }
     } catch (err) {
       console.error(err);
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
 
           {/* Status Message */}
           {statusMsg.text && (
-            <div className={`p-4 rounded-lg text-sm font-medium ${statusMsg.type === "success" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+            <div className={`p-4 rounded-lg text-sm font-medium ${statusMsg.type === "error" ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
               }`}>
               {statusMsg.text}
             </div>

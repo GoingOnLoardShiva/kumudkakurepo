@@ -14,8 +14,9 @@ export default function AdminProductList() {
         method: "GET"
       }); // Ensure your GET api/products returns all
       const data = await res.json();
-      console.log(data)
-      setProducts(data);
+      // If your API returns { products: [...] } use data.products
+      // If it returns the array directly, use data
+      setProducts(Array.isArray(data) ? data : data.products || []);
     } catch (err) {
       console.error("Fetch error:", err);
     } finally {
