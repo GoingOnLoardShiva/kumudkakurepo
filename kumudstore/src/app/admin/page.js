@@ -10,7 +10,7 @@ export default async function AdminDashboard() {
 
   // 1. Redirect to login if no token
   if (!token) {
-    redirect("/login"); 
+    redirect("/login");
   }
 
   // 2. Decrypt the token
@@ -22,5 +22,7 @@ export default async function AdminDashboard() {
   }
 
   // 4. Pass the email to the Client Component
-  return <AdminDashboardClient adminEmail={decoded.email} />;
+  return (
+    <AdminDashboardClient adminEmail={decoded.email} />
+  )
 }
