@@ -14,7 +14,7 @@ export default function EditProductPage() {
   const [features, setFeatures] = useState(["", "", "", ""]);
   const [homeDelivery, setHomeDelivery] = useState(false);
   const [freeInstallation, setFreeInstallation] = useState(false);
-  
+
   // Image handling
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
@@ -43,7 +43,7 @@ export default function EditProductPage() {
 
           // --- IMPORTANT: Solving the Features Detail issue ---
           let rawFeatures = data.features;
-          
+
           // If database returns a JSON string, parse it into an array
           if (typeof rawFeatures === "string") {
             try {
@@ -103,7 +103,7 @@ export default function EditProductPage() {
     formData.append("features", JSON.stringify(features.filter((f) => f.trim() !== "")));
     formData.append("homeDelivery", homeDelivery);
     formData.append("freeInstallation", freeInstallation);
-    
+
     if (imageFile) {
       formData.append("img", imageFile);
     }
@@ -129,20 +129,20 @@ export default function EditProductPage() {
     }
   };
 
-  if (loading) return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin"></div>
-        <p className="text-gray-500 font-medium">Loading Product Data...</p>
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="w-10 h-10 border-4 border-indigo-200 border-t-indigo-600 rounded-full animate-spin" />
       </div>
-    </div>
-  );
+    );
+  }
+
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 md:p-12">
       <div className="max-w-4xl mx-auto">
-        <button 
-          onClick={() => router.back()} 
+        <button
+          onClick={() => router.back()}
           className="flex items-center gap-2 text-gray-500 hover:text-indigo-600 mb-8 font-medium transition"
         >
           <FiArrowLeft /> Back to Dashboard
@@ -157,7 +157,7 @@ export default function EditProductPage() {
           {/* Main Details */}
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 space-y-6">
-              
+
               {statusMsg.text && (
                 <div className={`p-4 rounded-xl flex items-center gap-3 ${statusMsg.type === "success" ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
                   {statusMsg.type === "success" && <FiCheckCircle />}
@@ -220,12 +220,12 @@ export default function EditProductPage() {
           <div className="space-y-6">
             <div className="bg-white p-6 rounded-3xl shadow-sm border border-gray-100">
               <label className="text-xs uppercase tracking-widest font-bold text-gray-400 block mb-4">Product Image</label>
-              
+
               <div className="relative group overflow-hidden rounded-2xl aspect-square bg-gray-50 border border-gray-100 mb-4">
-                <img 
-                  src={imagePreview || currentImageUrl} 
-                  alt="Preview" 
-                  className="w-full h-full object-cover" 
+                <img
+                  src={imagePreview || currentImageUrl}
+                  alt="Preview"
+                  className="w-full h-full object-cover"
                 />
                 <label className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white cursor-pointer">
                   <FiUploadCloud size={24} />
@@ -259,9 +259,8 @@ export default function EditProductPage() {
             <button
               type="submit"
               disabled={saving}
-              className={`w-full py-4 rounded-2xl font-bold text-white shadow-xl flex items-center justify-center gap-2 transition-all ${
-                saving ? "bg-indigo-300" : "bg-indigo-600 hover:bg-indigo-700 hover:-translate-y-1 active:scale-95"
-              }`}
+              className={`w-full py-4 rounded-2xl font-bold text-white shadow-xl flex items-center justify-center gap-2 transition-all ${saving ? "bg-indigo-300" : "bg-indigo-600 hover:bg-indigo-700 hover:-translate-y-1 active:scale-95"
+                }`}
             >
               {saving ? "Saving Changes..." : <><FiSave /> Update Product</>}
             </button>
