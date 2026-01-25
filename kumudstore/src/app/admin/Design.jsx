@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-export default function AdminDashboard() {
+export default function Design() {
   const [productName, setProductName] = useState("");
   const [slug, setSlug] = useState("");
   const [description, setDescription] = useState("");

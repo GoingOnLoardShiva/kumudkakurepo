@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FiList, FiPlusCircle, FiSettings, FiLogOut, FiUser } from "react-icons/fi";
 import AdminProductList from "./AdminProductList";
-import AddProductForm from "./Design";
+import Design from "./Design";
 import { useRouter } from "next/navigation";
 
 export default function AdminDashboard({ adminEmail }) {
@@ -83,7 +83,7 @@ export default function AdminDashboard({ adminEmail }) {
           {activeTab === "list" ? (
             <AdminProductList onEditClick={() => {}} />
           ) : (
-            <AddProductForm onSuccess={() => setActiveTab("list")} />
+            <Design onSuccess={() => setActiveTab("list")} />
           )}
         </div>
       </div>

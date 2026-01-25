@@ -1,28 +1,16 @@
-// app/admin/page.js
 import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { verifyToken } from "@/lib/auth";
 import AdminDashboardClient from "./AdminDashboard";
 
-export default async function AdminDashboard() {
-  const cookieStore = await cookies();
+export default async function AdminPage() {
+  const cookieStore = await cookies(); // ✅ MUST await
   const token = cookieStore.get("admin_token")?.value;
 
-  // 1. Redirect to login if no token
   if (!token) {
-    redirect("/login");
+    return null; // middleware already protects
   }
 
-  // 2. Decrypt the token
   const decoded = await verifyToken(token);
 
-  // 3. If token is fake or expired, redirect
-  if (!decoded) {
-    redirect("/login");
-  }
-
-  // 4. Pass the email to the Client Component
-  return (
-    <AdminDashboardClient adminEmail={decoded.email} />
-  )
+  return <AdminDashboardClient adminEmail={decoded.email} />;
 }
