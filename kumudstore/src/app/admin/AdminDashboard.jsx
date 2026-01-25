@@ -79,7 +79,7 @@ export default function AdminDashboard({ adminEmail }) {
         </div>
 
         {/* Tab Content */}
-        <div className="mt-4 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+        <div className="mt-4">
           {activeTab === "list" ? (
             <AdminProductList onEditClick={() => {}} />
           ) : (
